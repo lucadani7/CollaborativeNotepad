@@ -1,0 +1,11 @@
+.git
+
+server
+server.exe
+*.exe
+
+.vscode
+.idea
+
+.DS_Store
+*.log
