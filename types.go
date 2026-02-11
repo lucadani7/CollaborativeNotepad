@@ -6,6 +6,7 @@ import (
 	"github.com/gorilla/websocket"
 )
 
+// Message Type represents the category or nature of the message, such as "INIT", "INSERT", "DELETE", or "ERROR".
 type Message struct {
 	Type    string `json:"type"`
 	DocID   string `json:"doc_id"`
@@ -14,6 +15,7 @@ type Message struct {
 	Len     int    `json:"len,omitempty"`
 }
 
+// Document represents a shared text document, enabling concurrent editing and synchronized updates across multiple clients.
 type Document struct {
 	ID      string
 	Content []rune
@@ -21,6 +23,7 @@ type Document struct {
 	mu      sync.Mutex
 }
 
+// Store represents a thread-safe container for managing shared text documents.
 type Store struct {
 	Documents map[string]*Document
 	mu        sync.RWMutex
