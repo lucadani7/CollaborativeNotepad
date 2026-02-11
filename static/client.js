@@ -18,6 +18,16 @@ ws.onclose = () => {
 };
 
 ws.onmessage = (event) => {
+    /**
+     * Parses the incoming JSON string from the event data and assigns it to the variable `msg`.
+     *
+     * `msg` holds a JavaScript object derived from the JSON data contained in the `event.data` string.
+     * Ensure that `event.data` contains a valid JSON string to avoid parsing errors.
+     *
+     * Common use cases include processing structured data received from web sockets, iframes, or other event-driven mechanisms.
+     *
+     * Note: This parsing operation assumes that `event.data` is already defined and accessible at runtime.
+     */
     const msg = JSON.parse(event.data);
     const start = editor.selectionStart;
     const scrollTop = editor.scrollTop;
@@ -51,6 +61,12 @@ ws.onmessage = (event) => {
 
 
 function getDiff(oldText, newText) {
+    /**
+     * Represents the starting value or initial point for a process, iteration, or calculation.
+     * Typically used to define the beginning of a range or sequence.
+     *
+     * @type {number}
+     */
     let start = 0;
     while (start < oldText.length && start < newText.length && oldText[start] === newText[start]) {
         start++;
@@ -81,6 +97,11 @@ function getDiff(oldText, newText) {
 }
 
 editor.addEventListener("input", () => {
+    /**
+     * Represents the current content of the editor.
+     * This variable holds the string value retrieved from the editor's content at a given time.
+     * It is typically used to process, display, or manipulate the editor's current text content.
+     */
     const currentContent = editor.value;
     const change = getDiff(lastContent, currentContent);
     if (change) {
